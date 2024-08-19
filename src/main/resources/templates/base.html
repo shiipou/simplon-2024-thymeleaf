@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" th:fragment="layout(title, content, styles)">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title th:text="${title}">Welcome</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css" />
+    <link th:replace="${styles}" />
+</head>
+<body>
+    <header th:replace="~{header :: layout}"></header>
+
+    <th:block th:replace="${content}" />
+
+    <footer th:replace="~{footer :: layout}"></footer>
+</body>
+</html>

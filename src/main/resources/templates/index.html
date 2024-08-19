@@ -1,21 +1,23 @@
-<div>
-    <h1>Greeting</h1>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Index</th>
-            <th>Size</th>
-            <th>Action</th>
-        </tr>
-        <tr th:each="name,status : ${names}" th:class="${status.odd}? 'odd'">
-            <td th:text="${name}">World</td>
-            <td th:text="${status.index + 1}">1</td>
-            <td th:text="${status.size}">1</td>
-            <td><button th:if="${name != currentUser}">Delete</button></td>
-        </tr>
-    </table>
-</div>
+<th:block th:replace="~{ base :: layout('Welcome', ~{::section}, ~{::link}) }">
+    <link rel="stylesheet" th:href="@{/css/index.css}" href="../static/css/index.css" />
 
-<style>
-    .odd { background-color: #ccc; }
-</style>
+    <section>
+        <div>
+            <h1>Greeting</h1>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Index</th>
+                    <th>Size</th>
+                    <th>Action</th>
+                </tr>
+                <tr th:each="name,status : ${names}" th:class="${status.odd}? 'odd'">
+                    <td th:text="${name}">World</td>
+                    <td th:text="${status.index + 1}">1</td>
+                    <td th:text="${status.size}">1</td>
+                    <td><button th:if="${name != currentUser}">Delete</button></td>
+                </tr>
+            </table>
+        </div>
+    </section>
+</th:block>
