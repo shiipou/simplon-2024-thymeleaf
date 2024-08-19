@@ -1,0 +1,24 @@
+<th:block th:replace="~{ base :: layout('Register', ~{::form}, ~{::link}) }">
+    <link rel="stylesheet" href="../static/css/login.css" th:href="@{/css/login.css}">
+
+    <form method="post">
+        <div class="error" th:if="${error}" th:switch="${error}">
+            <p th:case="inputMismatch">Password didn't match, check your inputs.</p>
+        </div>
+
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" placeholder="Username" required/>
+
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Email" required/>
+
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" placeholder="Password" required/>
+
+        <label for="passwordConfirm">Confirmation</label>
+        <input type="password" name="passwordConfirm" id="passwordConfirm" placeholder="Password confirmation" required/>
+
+        <input type="submit" value="Register">
+        <a th:href="@{/login}" href="/login">Already have an account ? Login now!</a>
+    </form>
+</th:block>

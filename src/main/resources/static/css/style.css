@@ -57,6 +57,13 @@ article:hover {
     box-shadow: 0 8px 12px rgba(0,0,0,0.2); /* Enhanced shadow on hover for depth */
 }
 
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20vw;
+    gap: 10px;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
     nav ul {

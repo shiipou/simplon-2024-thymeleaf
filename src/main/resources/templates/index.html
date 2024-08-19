@@ -3,21 +3,7 @@
 
     <section>
         <div>
-            <h1>Greeting</h1>
-            <table>
-                <tr>
-                    <th>Name</th>
-                    <th>Index</th>
-                    <th>Size</th>
-                    <th>Action</th>
-                </tr>
-                <tr th:each="name,status : ${names}" th:class="${status.odd}? 'odd'">
-                    <td th:text="${name}">World</td>
-                    <td th:text="${status.index + 1}">1</td>
-                    <td th:text="${status.size}">1</td>
-                    <td><button th:if="${name != currentUser}">Delete</button></td>
-                </tr>
-            </table>
+            <h1 th:text="|Greeting ${currentUser.username}|">Greeting World</h1>
         </div>
     </section>
 </th:block>

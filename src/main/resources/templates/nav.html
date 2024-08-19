@@ -5,7 +5,10 @@
     </div>
     <ul>
         <li>
-            <a href="/" >Home</a>
+            <a href="/" th:href="${'/'+currentUser?.id}" >Home</a>
+        </li>
+        <li th:if="${currentUser?.role == T(fr.simplon.thymeleaf.model.UserRole).VIEWER}">
+            <a href="/admin" th:href="${'/admin/'+currentUser.id}">Admin</a>
         </li>
     </ul>
 </nav>
