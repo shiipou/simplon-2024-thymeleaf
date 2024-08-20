@@ -1,6 +1,5 @@
-package fr.simplon.thymeleaf.model;
+package fr.simplon.spring_security.model;
 
-import org.hibernate.annotations.ColumnDefault;
 import org.springframework.lang.NonNull;
 
 import jakarta.persistence.Entity;
@@ -12,29 +11,26 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
-@Getter
-@Setter
-@ToString
+@Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
 @Table(name = "users")
 public class User {
-  @Id
-  @GeneratedValue
-  private Long id;
+    
+    @Id
+    @GeneratedValue
+    private Long id;
 
-  @NonNull
-  private String username;
+    @NonNull
+    private String username;
 
-  @NonNull
-  private String email;
+    @NonNull
+    private String email;
 
-  private String password;
+    private String password;
 
-  @ColumnDefault("0")
-  private UserRole role;
+    private UserRole role;
 }

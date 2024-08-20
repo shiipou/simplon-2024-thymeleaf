@@ -1,24 +1,26 @@
-<th:block th:replace="~{ base :: layout('Register', ~{::form}, ~{::link}) }">
-    <link rel="stylesheet" href="../static/css/login.css" th:href="@{/css/login.css}">
-
-    <form method="post">
-        <div class="error" th:if="${error}" th:switch="${error}">
-            <p th:case="inputMismatch">Password didn't match, check your inputs.</p>
-        </div>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <form th:action="@{/register/save}" action="/register/save" method="post" th:object="${user}">
         <label for="username">Username</label>
-        <input type="text" name="username" id="username" placeholder="Username" required/>
+        <input type="text" name="username" id="username" placeholder="Username" th:field="*{username}">
 
         <label for="email">Email</label>
-        <input type="email" name="email" id="email" placeholder="Email" required/>
-
+        <input type="email" name="email" id="email" placeholder="Email" th:field="*{email}">
+        
         <label for="password">Password</label>
-        <input type="password" name="password" id="password" placeholder="Password" required/>
+        <input type="password" name="password" id="password" placeholder="Password" th:field="*{password}">
 
         <label for="passwordConfirm">Confirmation</label>
-        <input type="password" name="passwordConfirm" id="passwordConfirm" placeholder="Password confirmation" required/>
+        <input type="password" name="passwordConfirm" id="passwordConfirm" placeholder="Password confirmation" th:field="*{passwordConfirm}">
 
         <input type="submit" value="Register">
-        <a th:href="@{/login}" href="/login">Already have an account ? Login now!</a>
+        <a th:href="@{/login}" href="/login">Already have an account? Login here !</a>
     </form>
-</th:block>
+</body>
+</html>
