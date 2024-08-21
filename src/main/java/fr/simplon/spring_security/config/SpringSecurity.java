@@ -50,12 +50,14 @@ public class SpringSecurity {
         return http.authorizeHttpRequests((auth) -> {
             auth
                     .requestMatchers("/").permitAll()
-                    .requestMatchers( "/register/**").permitAll()
+                    .requestMatchers( "/register/**").anonymous()
                     .requestMatchers("/admin").hasRole("ADMIN")
                     .requestMatchers("/css/**", "/favicon.ico").permitAll();
         }).formLogin(login -> login
+                .defaultSuccessUrl("/")
                 .permitAll())
         .logout(logout -> logout
+                .logoutSuccessUrl("/login?success=loggedOut")
                 .permitAll())
         .build();
     }

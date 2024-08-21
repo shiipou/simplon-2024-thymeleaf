@@ -7,5 +7,6 @@
 </head>
 <body>
     <h1>Page d'index</h1>
+    <p th:if="${currentUser}" th:text="|Greeting ${currentUser.username}|">Greeting username</p>
 </body>
 </html>

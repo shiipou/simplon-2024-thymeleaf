@@ -1,12 +1,14 @@
 package fr.simplon.spring_security.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Optional;
 import fr.simplon.spring_security.dto.RegisterDto;
 import fr.simplon.spring_security.model.User;
 import fr.simplon.spring_security.service.UserService;
@@ -23,7 +25,11 @@ public class AuthController {
     }
 
     @GetMapping("/")
-    public String home() {
+    public String home(Model model, Authentication authentication) {
+        Optional<User> user = userService.from(authentication);
+        if(user.isPresent()){
+            model.addAttribute("currentUser", user.get());
+        }
         return "index";
     }
 
