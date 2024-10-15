@@ -11,15 +11,16 @@ jobs:
   build:
     name: Spring build
     runs-on: ubuntu-latest
+    if: ${{ needs.get-version.outputs.will-release == 'false' }}
     needs: 
       - get-version
     steps:
-      - name: Print version
-        run : |
-          echo "${{ needs.get-version.outputs.version }}"
-          echo "${{ needs.get-version.outputs.changelogs }}"
-          echo "${{ needs.get-version.outputs.is-prerelease }}"
-          echo "${{ needs.get-version.outputs.will-release }}"
+      # - name: Print version
+      #   run : |
+      #     echo "${{ needs.get-version.outputs.version }}"
+      #     echo "${{ needs.get-version.outputs.changelogs }}"
+      #     echo "${{ needs.get-version.outputs.is-prerelease }}"
+      #     echo "${{ needs.get-version.outputs.will-release }}"
       - name: setup java
         uses: actions/setup-java@v4
         with:
@@ -30,5 +31,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Build with Gradle
+        env:
+          VERSION: "${{ needs.get-version.outputs.version }}"
         run: ./gradlew bootjar
       - run: ls -lia build/libs
